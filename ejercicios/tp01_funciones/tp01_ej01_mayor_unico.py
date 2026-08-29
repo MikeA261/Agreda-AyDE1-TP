@@ -1,4 +1,4 @@
-def mayor_unico (a = int,b = int,c= int):
+def mayor_unico (a = int,b = int,c= int)->int :
     """Se busca el mayor unico estricto de los tres valores ingresados
 
         Pre: Todos los numeros deben ser enteros
