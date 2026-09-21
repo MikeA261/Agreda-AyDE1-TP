@@ -1,33 +1,39 @@
 def descuento_subte(viajes = int)->float:
+    """ La funcion devuelve el precio final de la cantidad de viajes
+        con los descuentos aplicados.
 
-    if viajes:
-        viajes -= 20
-        precio = 20 * 1_000
-        preciototal = precio
-        if viajes > 10:
-            viajes -= 10
-            precio2 = 10 * 800
-            preciototal = precio + precio2
-            if viajes > 10:
-                viajes -= 10
-                if viajes < 10:
-                    precio3 = viajes * 700
-                    preciototal = precio + precio2 + precio3
-                    if viajes > 10:
-                        viajes -= 10
-                        precio4 = viajes * 600
-                    else:
-                        precio4 = viajes * 600
-                        preciototal= precio + precio2 + precio3 + precio4
-            else:
-                precio3= viajes * 700
-                preciototal = precio + precio2 + precio3
-        else:
-            precio2 = viajes * 800
-            preciototal = precio + precio2
+        Pre: la funcion recibe un entero como parametro de viajes.
+
+        Post: Se retorna un int (el total del precio).
+    """
+
+    descuentos = [40, 30, 20]
+    aplicable= [41,31,21]
+    precio = 1000
+    final= 0
+
+    if viajes <= 20:
+        final= viajes * precio
+        return final
+
+    for aplica,desc in zip(aplicable,descuentos):
+        if aplica <= viajes:
+            diferencia = viajes - (aplica - 1)
+            final += diferencia * precio * (1 - desc / 100)
+            viajes -= diferencia
+
+    final += viajes * precio
+
+    return final
+
+
+
+
+
+
    
-    return float(preciototal)
+    
 
 viajes = int(input("Ingrese la cantidad de viajes que realizo: "))
-
-print(descuento_subte(viajes))
+gastos= descuento_subte(viajes)
+print(f'El monto total gastado es de ${gastos}')
