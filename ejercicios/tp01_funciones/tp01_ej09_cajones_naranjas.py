@@ -1,16 +1,23 @@
 import random as rm
 
 
-def cant_naranjas():
+def cant_naranjas()->int:
   cantidad = rm.randint(10000,30000)
   return cantidad
 
 
-def clasif_naranjas(cant):
+def clasif_naranjas(cant: int)->tuple:
+  """ Esta funcion calsifica las naranjas
+      para jugo y para trasnporte.
+
+      Post: recibe un numero entero.
+
+      Pre: devuelve una tupla de tres elementos
+  """
   paracaj=0
   pesocaj=0
   parajugo=0
-  for j in range(cantidad):
+  for j in range(cant):
     peso= rm.randint(150,350)
     if peso <= 300:
       paracaj += 1
@@ -19,11 +26,15 @@ def clasif_naranjas(cant):
       parajugo += 1
   return paracaj,parajugo,pesocaj
 
-def numero_cajas(cantidad,peso):
+def numero_cajas(cantidad: int)->tuple:
+  """
+  """
   cajas = cantidad // 100
   return cajas
 
-def cajas_camion(cajas,peso):
+def cajas_camion(peso: int)->tuple:
+  """
+  """
   pesok = peso // 1000
   camiones = pesok // 500 
   sobrante = pesok % 500
@@ -33,14 +44,21 @@ def cajas_camion(cajas,peso):
   return camiones, sobrante
 
 
-cantidad= (cant_naranjas())
-print(f'Cantidad total de naranjas cosechadas: {cantidad}')
 
-clasificacion= clasif_naranjas(cantidad)
-print(f'Cantidad de naramjas para envio: {clasificacion[0]}, cantidad de naranjas para jugo: {clasificacion[1]}')
+def main():
 
-cajas= numero_cajas(clasificacion[0],clasificacion[2])
-print(f'Numero de cajas a enviar: {cajas}')
+  cantidad= (cant_naranjas())
+  print(f'Cantidad total de naranjas cosechadas: {cantidad}')
 
-camion= cajas_camion(cajas,clasificacion[2])
-print(f'Camiones necesarios para el envio : {camion[0]}. Sobrante de naranjas para el proximo envio {camion[1]}Kg ')
+  clasificacion= clasif_naranjas(cantidad)
+  print(f'Cantidad de naramjas para envio: {clasificacion[0]}, cantidad de naranjas para jugo: {clasificacion[1]}')
+
+  cajas= numero_cajas(clasificacion[0])
+  print(f'Numero de cajas a enviar: {cajas}')
+
+  camion= cajas_camion(clasificacion[2])
+  print(f'Camiones necesarios para el envio : {camion[0]}. Sobrante de naranjas para el proximo envio {camion[1]}Kg ')
+
+
+if __name__ == '__main__':
+  main()

@@ -1,6 +1,8 @@
 import random as rm
 
 def lista_nueva(a: int,n: int)->list:
+  """
+  """
   listanueva= []
   for j in range(n):
     listanueva.append(rm.randint(a,n))

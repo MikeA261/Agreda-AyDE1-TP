@@ -1,6 +1,11 @@
 
 def tipo_atencion(pacientes: list,tipo: list)->tuple:
-  """
+  """ Esta función tiene como objetivo
+        clasificar el tipo de atencion en los socios
+
+        Pre: recibe dos listas de numeros enteros
+
+        Post: retorna dos listas de numeros enteros
   """
   urgencia= []
   turno= []
